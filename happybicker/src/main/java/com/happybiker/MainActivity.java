@@ -4,9 +4,25 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import butterknife.OnClick;
 
 
 public class MainActivity extends Activity {
+
+    @OnClick(R.id.left)
+    public void turnLeft(){
+
+    }
+
+    @OnClick(R.id.right)
+    public void turnRight(){
+
+    }
+
+    @OnClick(R.id.stop)
+    public void goAhead(){
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
