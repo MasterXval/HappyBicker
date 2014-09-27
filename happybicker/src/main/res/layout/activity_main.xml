@@ -15,7 +15,7 @@
                 android:id="@+id/left"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="{fa-backward}"
+                android:text="{fa-arrow-circle-left}"
                 android:textSize="90dp"
                 android:textColor="#2ecc71"
                 android:layout_weight="1"/>
@@ -23,7 +23,7 @@
                 android:id="@+id/right"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="{fa-forward}"
+                android:text="{fa-arrow-circle-right}"
                 android:textSize="90dp"
                 android:textColor="#2ecc71"
                 android:layout_weight="1"/>
@@ -33,7 +33,7 @@
             android:id="@+id/stop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="{fa-pause}"
+            android:text="{fa-arrow-circle-up}"
             android:textSize="90dp"
             android:textColor="#f39c12"
             android:layout_weight="2"/>
