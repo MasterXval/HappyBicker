@@ -1,0 +1,13 @@
+*bin/
+*~
+*.iml
+.idea/*
+local.properties
+out/
+*build/
+*.DS_Store
+.gradle/
+gradle/
+gradlew*
+gradle.properties
+HealthMate/gradle.properties
