@@ -4,6 +4,7 @@ import android.bluetooth.*;
 import android.util.Log;
 
 import java.nio.ByteBuffer;
+import java.security.acl.LastOwnerException;
 import java.util.List;
 import java.util.UUID;
 
@@ -47,8 +48,13 @@ public class BleConnection extends BluetoothGattCallback {
         List<BluetoothGattService> services = gatt.getServices();
         for (BluetoothGattService service : services) {
             if (service.getUuid().equals(SERVICE_UUID)) {
+                Log.i("BLE", "GOT CHARACTERISTIC");
                 characteristic = service.getCharacteristic(CHAR_UUID);
             }
+        }
+
+        if (characteristic == null) {
+            Log.e("BLE", "NO CHARACTERISTIC FOUND");
         }
     }
 
