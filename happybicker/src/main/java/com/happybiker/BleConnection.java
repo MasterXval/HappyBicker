@@ -3,16 +3,43 @@ package com.happybiker;
 import android.bluetooth.*;
 import android.util.Log;
 
+import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.UUID;
 
-public class BluetoothLeManager extends BluetoothGattCallback {
+import static android.bluetooth.BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT;
 
+public class BleConnection extends BluetoothGattCallback {
+
+    private static final String TAG = BleConnection.class.getSimpleName();
     private UUID SERVICE_UUID = UUID.fromString("01010101-0101-0101-0101-010101010101");
     private UUID CHAR_UUID = UUID.fromString("01010101-0101-0101-0101-010101524742");
 
     private BluetoothGattCharacteristic characteristic;
     private BluetoothGatt bluetoothGatt;
+
+    public void setBluetoothGatt(BluetoothGatt bluetoothGatt) {
+        this.bluetoothGatt = bluetoothGatt;
+    }
+
+    public void writeMessage(int message) {
+        if (characteristic == null) {
+            Log.e(TAG, "NO CHARACTERISTIC");
+            return;
+        }
+
+        ByteBuffer bf = ByteBuffer.allocate(1);
+        bf.put((byte) message);
+        characteristic.setValue(bf.array());
+        characteristic.setWriteType(WRITE_TYPE_DEFAULT);
+        bluetoothGatt.writeCharacteristic(characteristic);
+    }
+
+    public void stop() {
+        bluetoothGatt.disconnect();
+    }
+
+// BluetoothGattCallback
 
     @Override
     public void onServicesDiscovered(BluetoothGatt gatt, int status) {
@@ -20,7 +47,6 @@ public class BluetoothLeManager extends BluetoothGattCallback {
         List<BluetoothGattService> services = gatt.getServices();
         for (BluetoothGattService service : services) {
             if (service.getUuid().equals(SERVICE_UUID)) {
-                bluetoothGatt = gatt;
                 characteristic = service.getCharacteristic(CHAR_UUID);
             }
         }
@@ -35,10 +61,9 @@ public class BluetoothLeManager extends BluetoothGattCallback {
         }
     }
 
-    public void writeMessage(int message) {
-        if (bluetoothGatt != null) {
-
-        }
+    @Override
+    public void onCharacteristicWrite(
+            BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
+        Log.i(TAG, "onCharacteristicWrite() status : " + status);
     }
-
 }
