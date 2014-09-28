@@ -1,10 +1,12 @@
-package com.happybiker;
+package com.happybiker.ble;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.happybiker.Help;
 
 
 public class BleScanner implements BluetoothAdapter.LeScanCallback {
@@ -18,7 +20,7 @@ public class BleScanner implements BluetoothAdapter.LeScanCallback {
         this.manager = manager;
     }
 
-    public void scanLeDevice(boolean enable) {
+    void scanLeDevice(boolean enable) {
         if (enable && !scanning) {
             scanning = true;
             adapter.startLeScan(this);

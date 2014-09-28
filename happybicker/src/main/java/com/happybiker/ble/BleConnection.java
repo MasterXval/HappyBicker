@@ -1,4 +1,4 @@
-package com.happybiker;
+package com.happybiker.ble;
 
 import android.bluetooth.*;
 import android.util.Log;
@@ -18,11 +18,11 @@ public class BleConnection extends BluetoothGattCallback {
     private BluetoothGattCharacteristic characteristic;
     private BluetoothGatt bluetoothGatt;
 
-    public void setBluetoothGatt(BluetoothGatt bluetoothGatt) {
+    void setBluetoothGatt(BluetoothGatt bluetoothGatt) {
         this.bluetoothGatt = bluetoothGatt;
     }
 
-    public void writeMessage(int message) {
+    void writeMessage(int message) {
         if (characteristic == null) {
             Log.e(TAG, "NO CHARACTERISTIC");
             return;
@@ -35,7 +35,7 @@ public class BleConnection extends BluetoothGattCallback {
         bluetoothGatt.writeCharacteristic(characteristic);
     }
 
-    public void stop() {
+    void stop() {
         bluetoothGatt.disconnect();
     }
 

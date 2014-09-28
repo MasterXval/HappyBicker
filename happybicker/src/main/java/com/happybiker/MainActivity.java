@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.happybiker.ble.BleManager;
 
 
 public class MainActivity extends Activity {

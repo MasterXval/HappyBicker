@@ -1,9 +1,11 @@
-package com.happybiker;
+package com.happybiker.ble;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.util.Log;
+
+import com.happybiker.Help;
 
 
 public class BleManager {
