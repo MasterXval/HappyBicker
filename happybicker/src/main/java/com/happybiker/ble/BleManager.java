@@ -46,6 +46,8 @@ public class BleManager {
 
     public void stop() {
         scan(false);
-        bleConnection.stop();
+        if (bleConnection != null) {
+            bleConnection.stop();
+        }
     }
 }
