@@ -48,8 +48,17 @@ public class BleConnection extends BluetoothGattCallback {
         List<BluetoothGattService> services = gatt.getServices();
         for (BluetoothGattService service : services) {
             if (service.getUuid().equals(SERVICE_UUID)) {
-                Log.i("BLE", "GOT CHARACTERISTIC");
+                Log.i("BLE", "GOT SERVICE");
                 characteristic = service.getCharacteristic(CHAR_UUID);
+
+                if (characteristic == null) {
+                    Log.e("BLE", "CANNOT FIND CHARACTERISTIC");
+                    for (BluetoothGattCharacteristic  chara : service.getCharacteristics()) {
+                        Log.i("BLE", "CHAR : " + chara.getUuid().toString());
+                    }
+                } else {
+                    Log.i("BLE", "GOT CHARACTERISTIC : " + characteristic);
+                }
             }
         }
 
